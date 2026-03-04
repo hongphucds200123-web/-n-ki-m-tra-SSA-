@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Quiz — First Year Playbook</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🎯</div>
+      <div>
+        <div class="title">Study Quiz</div>
+        <div class="subtitle">Làm nhanh — hiểu sâu — nhớ lâu</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="btnModeQuiz" class="btn primary">Quiz</button>
+      <button id="btnModeReview" class="btn">Ôn câu sai</button>
+      <button id="btnModeFlash" class="btn">Flashcards</button>
+      <button id="btnReset" class="btn danger">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="row">
+        <div class="field">
+          <label>Tìm câu</label>
+          <input id="searchInput" type="text" placeholder="Gõ từ khóa… (ví dụ: metacognition, net worth, motivation)" />
+        </div>
+
+        <div class="field">
+          <label>Bộ câu</label>
+          <select id="filterSet">
+            <option value="all">Tất cả</option>
+            <option value="study">Kỹ năng học tập & tư duy</option>
+            <option value="time">Quản lý thời gian & động lực</option>
+            <option value="finance">Tài chính cá nhân</option>
+            <option value="career">Định hướng nghề nghiệp</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Thứ tự</label>
+          <select id="orderSelect">
+            <option value="inorder">Theo thứ tự</option>
+            <option value="shuffle">Xáo trộn</option>
+          </select>
+        </div>
+
+        <div class="field small">
+          <label>Số câu</label>
+          <input id="limitInput" type="number" min="5" max="200" value="20" />
+        </div>
+
+        <div class="field small">
+          <label>&nbsp;</label>
+          <button id="btnStart" class="btn primary full">Bắt đầu</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="statLabel">Tiến độ</div>
+          <div class="statValue" id="statProgress">0/0</div>
+        </div>
+        <div class="stat">
+          <div class="statLabel">Đúng</div>
+          <div class="statValue ok" id="statCorrect">0</div>
+        </div>
+        <div class="stat">
+          <div class="statLabel">Sai</div>
+          <div class="statValue bad" id="statWrong">0</div>
+        </div>
+        <div class="stat">
+          <div class="statLabel">Streak</div>
+          <div class="statValue" id="statStreak">0</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="cardQuiz">
+      <div class="cardHeader">
+        <div class="chip" id="qMeta">Q--</div>
+        <div class="chip ghost" id="qSet">—</div>
+      </div>
+
+      <h2 class="question" id="qText">Nhấn “Bắt đầu” để vào bài.</h2>
+
+      <div class="options" id="options"></div>
+
+      <div class="explain" id="explainBox" hidden>
+        <div class="explainTitle">Giải thích</div>
+        <div class="explainText" id="explainText"></div>
+      </div>
+
+      <div class="footer">
+        <button id="btnPrev" class="btn">← Câu trước</button>
+        <button id="btnReveal" class="btn">Hiện đáp án</button>
+        <button id="btnMarkWrong" class="btn">Đánh dấu ôn lại</button>
+        <div class="spacer"></div>
+        <button id="btnNext" class="btn primary">Câu tiếp →</button>
+      </div>
+    </section>
+
+    <section class="card" id="cardFlash" hidden>
+      <div class="flashWrap">
+        <div class="flashCard" id="flashCard">
+          <div class="flashFront">
+            <div class="chip" id="fMeta">Flash</div>
+            <h2 id="fQuestion">—</h2>
+            <div class="hint">Click để lật</div>
+          </div>
+          <div class="flashBack">
+            <div class="chip">Đáp án</div>
+            <h2 id="fAnswer">—</h2>
+            <p id="fExplain">—</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button id="btnFPrev" class="btn">← Trước</button>
+        <button id="btnFShuffle" class="btn">Xáo trộn</button>
+        <div class="spacer"></div>
+        <button id="btnFNext" class="btn primary">Tiếp →</button>
+      </div>
+    </section>
+
+    <section class="panel" id="panelTips">
+      <h3>Gợi ý học nhanh (thực chiến)</h3>
+      <ul>
+        <li><b>Đọc trước</b> 10–15 phút để lên lớp nghe “vào thẳng xương”.</li>
+        <li><b>Hỏi đúng kiểu</b>: hỏi phần bạn còn mơ hồ, đừng hỏi cho có.</li>
+        <li><b>Ôn câu sai</b> mỗi ngày 5–10 phút: ít mà bén.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
